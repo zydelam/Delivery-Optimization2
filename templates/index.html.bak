@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>BestBuy</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  
+</head>
+
+<body>
+ <div class="login">
+	<h1>BestBuy</h1>
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}"method="post">
+		<input type="date" id="Order-Date" name="Order-Date">
+    	<input type="text" name="Size of the box weight" placeholder="Size of the box weight" required="required" />
+		<br/>
+        <input type="text" name="Size of the box width" placeholder="Size of the box width" required="required" />
+		<br/>
+		<input type="text" name="Store Addresss" placeholder="Store Addresss" required="required" />
+		<br/>
+		<input type="text" name="Customer Addresss" placeholder="Customer Addresss" required="required" />
+		<br/>
+        <select id="Courier" name="Courier">
+          <option value="FD">FD</option>
+          <option value="PS">PS</option>
+        </select>
+        <br/>
+		<select id="Weather" name="Weather">
+          <option value="Good">Good</option>
+          <option value="Bad">Bad</option>
+        </select>
+        <br/>
+		
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+
+   <br>
+   <br>
+   {{ prediction_text }}
+
+ </div>
+
+
+</body>
+</html>

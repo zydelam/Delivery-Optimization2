@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+  <meta charset="UTF-8">
+  <title>BestBuy</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  
+</head>
+<body>
+  <section id="rotating-section">
+    <div id="rotating-animation">
+        <div>
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+            <div class="rect6"></div>
+            <div class="rect7"></div>
+            <div class="rect8"></div>
+            <div class="rect9"></div>
+            <div class="rect10"></div>
+            <div class="rect15"></div>
+            <div class="rect16"></div>
+            <div class="rect17"></div>
+            <div class="rect18"></div>
+            <div class="rect19"></div>
+            <div class="rect20"></div>
+        </div>
+    </div>
+    <center><img src="{{ url_for('static', filename='logo.png') }}"/ width="10%"></center>
+<form action="{{ url_for('predict')}}"method="post" id="js-form">
+  <div class="name">
+
+		<input type="date" id="Order-Date" name="Order-Date">
+		    <input type="text" name="weight" placeholder="Weight (kg)" />
+    <input type="text" name="width" placeholder="Width (cm)" />
+    <input type="text" name="storeaddress" placeholder="Store address" />
+    <input type="text" name="customeraddress" placeholder="Customer address" />
+  </div>
+  <div class="dropdown">
+    <label for="courier">Courier :</label>
+    <select name="Courier" id="select-choice">
+      <option value="FD">FD</option>
+      <option value="PS">PS</option>
+    </select>
+    <label for="Weather">Weather:</label>
+    <select name="select-choice" id="select-choice">
+      <option value="Good">Good</option>
+      <option value="Bad">Bad</option>
+
+    </select>
+  </div>
+
+
+    <div class="button">
+      <button type="submit" class="btn">Predict</button>
+    </div>
+    <br>
+    <center>{{ prediction_text }}</center>
+
+</form>  
+<br>
+<br>
+
+</section>
+
+</body>
+
+</html>

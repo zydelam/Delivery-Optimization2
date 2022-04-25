@@ -1,0 +1,30 @@
+from geopy.distance import geodesic
+
+
+def lat_long_format(x):
+    """This function converts given 'longitude/latitude' string to 'latitude, longitude' string"""    
+    tmp_list = x[1:-1].split('/') # split the string based on '/'
+    long = tmp_list[0] # longitude
+    lat = tmp_list[1] # latitude
+    x = lat + ',' + long # 'latitude, langitude'
+    return x
+    
+
+def prediction(model, cluster_model, kmeans_store, kmeans_cust):
+    
+    order_date = in_arr.split('-')
+    weight = float(in_arr[1])
+    width = float(in_arr[2])
+    store_add = lat_long_format(in_arr[3])
+    cust_add = lat_long_format(in_arr[4])
+    distance = geodesic(store_add, cust_add).km
+    store_lat, store_long = [float(i) for i in store_add.split(',')]
+    store_lat, store_long = [float(i) for i in cust_add.split(',')]
+    cust_cluster = kmeans_cust.predict([[cust_lat, cust_long]])
+    store_cluster = kmeans_store.predict([[store_lat, store_long]])
+    in_model = [[distance, weight, store_cluster, cust_cluster, in_arr[-1], width, in_arr[-2]]
+    s_days = model.predict(in_model)
+    order_date[2] = str(int(order_date[2]) + int(s_days))
+    d_date = order_date.join('-')
+    
+    return d_date
